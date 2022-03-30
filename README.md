@@ -17,5 +17,5 @@ Either:
 > docker run -p 4200:80 gcr.io/spark-on-kubernetes-316714/manual-scheduler-fe:latest
 
 
-The External-Scheduler-Interface is running on port 4200 and expects the External-Scheduler-Interface to be accessible at 
+The Manual-Scheduler is running on port 4200 and expects the External-Scheduler-Interface to be accessible at 
 http://localhost:8082 
