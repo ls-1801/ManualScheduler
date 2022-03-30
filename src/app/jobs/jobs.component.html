@@ -2,4 +2,7 @@
   <div class="job-container" *ngFor="let jobName of jobNames">
     <app-job [jobName]="jobName"></app-job>
   </div>
+  <div style="color: white; text-align: center" *ngIf="jobNames.size == 0">
+    No Jobs exist!
+  </div>
 </div>
