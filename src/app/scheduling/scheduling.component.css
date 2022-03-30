@@ -1,0 +1,138 @@
+.job {
+  padding: 10px;
+  margin-left: 20px;
+  margin-right: -5px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  border-width: 3px;
+  border-color: black;
+}
+
+.completed {
+  order: 0;
+  color: #dfdfdf;
+  background: var(--color3dark);
+}
+
+.running {
+  order: 2;
+  color: var(--color1);
+  background: var(--color4dark);
+}
+
+.acquiring {
+  background-color: #cecece;
+}
+
+.acquiring-container {
+  background-color: #ffffff;
+  color: black;
+}
+
+.inqueue {
+  order: 2;
+  background: #9edec9;
+}
+
+.scheduled {
+  background-color: #b3dec1;
+}
+
+.submitted {
+  order: 2;
+  background: var(--color2dark);
+}
+
+.spec {
+  margin: 5px 40px;
+  width: 60%;
+  heigh: 100%;
+}
+
+.all-job-status-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.all-job-status-container div:first-child{
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+.all-job-status-container div:last-child{
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+
+.jobstatus-container {
+  padding: 16px;
+  padding-bottom: 3px;
+  display: flex;
+  flex-direction: row;
+}
+
+.jobstatus-container > span {
+  width: 0px;
+  margin: -16px;
+  font-size: 11px;
+}
+
+.scheduled-container {
+  background-color: var(--color3);
+  opacity: 70%;
+  color: black;
+}
+
+
+.inqueue-container {
+  background-color: var(--color2);
+  color:black;
+}
+
+.submitted-container {
+  background-color: var(--color1dark);
+}
+
+.completed-container {
+  background-color: var(--color1);
+}
+
+.buttons {
+  padding: 10px;
+}
+
+.buttons button {
+  margin: 0px 3px;
+}
+
+.scheduling-state {
+
+}
+
+.scheduling-header {
+  display: flex;
+  flex-direction: row;
+  margin: 10px 0px;
+}
+
+.scheduling-header .scheduling-name {
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 20px;
+  color: #dfdfdf;
+}
+
+.scheduling-header .scheduling-state {
+  font-size: 20px;
+  line-height: 20px;
+  margin-left: 5px;
+  margin-right: 10px;
+  color: #dfdfdf;
+}
+
+.scheduling-container {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #1f292c;
+}

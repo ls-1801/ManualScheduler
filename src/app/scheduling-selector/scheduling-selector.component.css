@@ -1,0 +1,16 @@
+.scheduling-selector-container {
+  color: #dfdfdf;
+  margin-top: 10px;
+  vertical-align: middle;
+  padding: 10px;
+}
+
+.selector-label {
+  margin-left: 20px;
+  line-height: 40px;
+  display: block;
+}
+
+h3 {
+  line-height: 0px;
+}

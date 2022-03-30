@@ -1,0 +1,44 @@
+.job-container {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5px;
+  padding: 5px;
+  border-radius: 4px;
+}
+
+div.job-in-CompletedState {
+  background-color: #323a42;
+  color: #dfdfdf;
+  opacity: 70%;
+}
+
+div.job-in-ReadyState {
+  background-color: #5bb77a;
+  color: #000000;
+  opacity: 70%;
+}
+
+div.job-in-InQueueState {
+  background-color: #9edec9;
+  color: #000000;
+  opacity: 70%;
+}
+
+div.job-in-SubmittedState {
+  background-color: #4f99c9;
+  color: #000000;
+  opacity: 70%;
+}
+
+div.job-in-ScheduledState {
+  background-color: #2b517c;
+  color: #dfdfdf;
+  opacity: 70%;
+}
+
+div.job-in-RunningState {
+  background-color: #492b7c;
+  color: #dfdfdf;
+  opacity: 70%;
+}

@@ -1,0 +1,8 @@
+<div class="job-container job-in-{{job.state}}" *ngIf="job$ | async as job">
+  <div class="job-name-container">
+    {{job.name}}
+  </div>
+  <div class="job-state-container">
+    {{job.state}}
+  </div>
+</div>

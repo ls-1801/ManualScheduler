@@ -1,0 +1,47 @@
+<div class="scheduling-container" *ngIf="scheduling$ | async as scheduling">
+  <div class="scheduling-header">
+  <span class="scheduling-name">{{scheduling.name}}</span>
+  <span class="scheduling-state">({{scheduling.state}})</span>
+  <div class="delete-button">
+    <button (click)="delete()">Delete</button>
+  </div>
+  </div>
+
+
+  <div class="all-job-status-container">
+    <div class="jobstatus-container acquiring-container" *ngIf="hasJobsWithState(scheduling, 'Acquiring')">
+      <span>Acquiring</span>
+        <div class=" job acquiring" *ngFor="let status of scheduling.jobStatus |
+        jobStateFilter:'Acquiring'">
+          {{status.name}}
+        </div>
+    </div>
+    <div class="jobstatus-container inqueue-container" *ngIf="hasJobsWithState(scheduling, 'InQueue')">
+      <span>InQueue</span>
+      <div class="job inqueue" *ngFor="let status of scheduling.jobStatus | jobStateFilter:'InQueue'">
+        {{status.name}}
+      </div>
+    </div>
+    <div class="jobstatus-container submitted-container" *ngIf="hasJobsWithState(scheduling, 'Submitted')">
+      <span>Submitted</span>
+      <div class="job submitted" *ngFor="let status of scheduling.jobStatus | jobStateFilter:'Submitted'">
+        {{status.name}}
+      </div>
+    </div>
+    <div class="jobstatus-container scheduled-container" *ngIf="hasJobsWithState(scheduling, 'Scheduled')">
+      <span>Scheduled</span>
+      <div class="job scheduled" *ngFor="let status of scheduling.jobStatus | jobStateFilter:'Scheduled'">
+        {{status.name}}
+      </div>
+    </div>
+    <div class="jobstatus-container completed-container" *ngIf="hasJobsWithState(scheduling, 'Completed')">
+      <span>Completed</span>
+      <div class="job completed" *ngFor="let status of scheduling.jobStatus | jobStateFilter:'Completed'">
+        {{status.name}}
+      </div>
+    </div>
+  </div>
+
+
+</div>
+

@@ -1,0 +1,16 @@
+<div class="scheduling-selector-container">
+  <div style="display: flex; flex-direction: row">
+    <h3>Schedulings</h3>
+    <div *ngFor="let schedulingName of schedulingNames">
+      <label class="selector-label">{{schedulingName}}<input type="checkbox"
+                                                          [checked]="selectedSchedulings[schedulingName]"
+                                      (change)="selectedSchedulings[schedulingName] = !selectedSchedulings[schedulingName]"></label>
+    </div>
+  </div>
+
+  <div *ngFor="let schedulingName of schedulingNames">
+    <ng-container *ngIf="selectedSchedulings[schedulingName]">
+      <app-scheduling [schedulingName]="schedulingName"></app-scheduling>
+    </ng-container>
+  </div>
+</div>

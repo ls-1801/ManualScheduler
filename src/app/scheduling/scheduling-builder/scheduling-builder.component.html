@@ -1,0 +1,28 @@
+<div class="scheduling-builder-container">
+  <h3>Scheduling Builder</h3>
+  <label>
+    Testbed:
+    <select [(ngModel)]="schedulingSpec.testBed">
+      <option *ngFor="let testbed of testbeds$ | async" [ngValue]="testbed">{{testbed.name}}</option>
+    </select>
+  </label>
+
+  <button [disabled]="!schedulingSpec.testBed || !schedulingSpec.name" (click)="create()">Create</button>
+
+  <div *ngIf="schedulingSpec.testBed">
+    <label>Scheduling Name: <input [(ngModel)]="schedulingSpec.name"></label>
+    <div style="display: flex; flex-direction: row">
+      <label>SlotBased<input type="radio" [(ngModel)]="schedulingMode"
+                             value="slots"></label>
+      <label>QueueBased<input type="radio" [(ngModel)]="schedulingMode" value="queue"></label>
+    </div>
+    <div class="strategy-builder-container" *ngIf="schedulingMode=='slots'">
+      <app-slot-based-builder (specChange)="specChange($event)"
+                              [testbed]="schedulingSpec.testBed"></app-slot-based-builder>
+    </div>
+    <div class="strategy-builder-container" *ngIf="schedulingMode=='queue'">
+      <app-queue-based-builder (specChange)="specChange($event)"
+                               [testbed]="schedulingSpec.testBed"></app-queue-based-builder>
+    </div>
+  </div>
+</div>

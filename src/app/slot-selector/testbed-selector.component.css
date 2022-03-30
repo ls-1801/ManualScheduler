@@ -1,0 +1,17 @@
+.testbed-selector-container {
+  padding: 5px;
+  background-color: #343d40;
+  border: #dfdfdf dotted 3px;
+  color: #dfdfdf;
+  border-radius: 10px;
+}
+
+.selector-label {
+  margin-left: 20px;
+  line-height: 40px;
+  display: block;
+}
+
+h3 {
+  line-height: 0px;
+}

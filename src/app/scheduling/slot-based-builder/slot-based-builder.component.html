@@ -1,0 +1,25 @@
+<label>Strict: <input type="checkbox" [(ngModel)]="strict" (ngModelChange)="updateOutput()"></label>
+<div style="display: flex; flex-direction: row; flex-wrap: wrap">
+  <div class="add-job" (click)="addJob(availableJob)" *ngFor="let availableJob of filterAvailableJobs()">
+    {{availableJob.name}}
+  </div>
+</div>
+
+<div *ngFor="let job of jobs; index as ji">
+  <div class="added-job">{{job.name}}<div
+    style="float:right">
+    <button (click)="remove(ji)">remove</button>
+    <button (click)="reorder(ji, 1)">up</button>
+    <button (click)="reorder(ji, -1)">down</button>
+  </div></div>
+  <div class="slot-selector-container">
+    <ng-container *ngFor="let slot of job.slots; index as i">
+      <div class="break" *ngIf="i % nNodes === 0"></div>
+      <div class="slot-selector" [ngClass]="{'selected': slot, 'not-selected': !slot, 'first-in-first-row': i == 0,
+    'last-in-first-row': i == nNodes - 1, 'first-in-last-row': nSlots-nNodes == i, 'last-in-last-row': i == nSlots -1}"
+           (click)="toggle(job, i)">
+        #{{i}}
+      </div>
+    </ng-container>
+  </div>
+</div>

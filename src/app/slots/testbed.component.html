@@ -1,0 +1,20 @@
+<div *ngIf="testbed$ | async as testbed" class="testbed-container">
+  <div class="testbed-name-container">{{testbed.name}}</div>
+  <div class="testbed-problem-container" *ngIf="getNodes(testbed).length == 0">
+    <p>Testbed does not have any Slots</p>
+  </div>
+  <div class="testbed-nodes-container">
+
+    <div class="node-container" *ngFor="let node of getNodes(testbed)">
+      <span class="node-name">{{node}}</span>
+      <div *ngFor="let slot of testbed.slotsByNode[node] | orderBy:'slotPositionOnNode'">
+        <div class="slots" [ngClass]="{
+        'free': slot.state === 'FREE',
+         'reserved': slot.state === 'RESERVED',
+          'occupied': slot.state === 'OCCUPIED'}">
+          {{slot.state === 'FREE' ? "EMPTY" : slot.state === 'RESERVED' ? slot.reservedFor : slot.podName}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

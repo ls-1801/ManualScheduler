@@ -1,0 +1,19 @@
+/* You can add global styles to this file, and also import other style files */
+
+body {
+  background-color: rgba(31, 41, 44, 0.91);
+  color: #121212;
+}
+
+:root {
+  --color1: #a3a8a9;
+  --color1dark: #81a0b2;
+  --color2: #e5fcf5;
+  --color2dark: #84b8d9;
+  --color3: #b3dec1;
+  --color3dark: #70767b;
+  --color4: #210124;
+  --color4dark: #160118;
+  --color5: #750d37;
+  --color5dark: #4e0924;
+}

@@ -1,0 +1,14 @@
+<div style="display: flex; flex-direction: row; flex-wrap: wrap">
+  <div class="add-job" (click)="addJob(availableJob)" *ngFor="let availableJob of availableJobs">
+    {{availableJob.name}}
+  </div>
+</div>
+
+<div *ngFor="let job of jobs; index as ji">
+  <div class="added-job">{{job}}<div
+    style="float:right">
+    <button (click)="remove(ji)">remove</button>
+    <button (click)="reorder(ji, 1)">up</button>
+    <button (click)="reorder(ji, -1)">down</button>
+  </div></div>
+</div>

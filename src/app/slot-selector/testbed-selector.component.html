@@ -1,0 +1,15 @@
+<div class="testbed-selector-container">
+<div style="display: flex; flex-direction: row">
+  <h3>Testbeds</h3>
+  <div style="line-height: 25px" *ngFor="let testbedName of testbedNames">
+    <label class="selector-label">{{testbedName}}<input type="checkbox" [checked]="selectedTestbeds[testbedName]"
+                                    (change)="selectedTestbeds[testbedName] = !selectedTestbeds[testbedName]"></label>
+  </div>
+</div>
+
+<div *ngFor="let testbedName of testbedNames">
+  <ng-container *ngIf="selectedTestbeds[testbedName]">
+    <app-testbed [testbedName]="testbedName"></app-testbed>
+  </ng-container>
+</div>
+</div>
