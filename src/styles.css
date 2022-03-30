@@ -17,3 +17,9 @@ body {
   --color5: #750d37;
   --color5dark: #4e0924;
 }
+
+.alert-error {
+  background-color: red;
+  color: black;
+  height: 50px;
+}

@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {RxStompService} from "../rx-stomp.service";
-import {map, Observable, ReplaySubject, Subject} from "rxjs";
+import {catchError, map, Observable, OperatorFunction, ReplaySubject, Subject, throwError} from "rxjs";
 import {
   ExternalBatchJob,
   ExternalResourceModification,
@@ -9,6 +9,7 @@ import {
   ExternalTestbed,
   JobsByName
 } from "./ExternalScheduling";
+import {FlashMessagesService} from "flash-messages-angular";
 
 
 const URL: string = "http://localhost:8082/external/";
@@ -23,40 +24,57 @@ export class ExternalSchedulerInterfaceService {
   private schedulings: { [index: string]: Subject<ExternalScheduling> } = {};
   private testbeds: { [index: string]: Subject<ExternalTestbed> } = {};
 
-  constructor(private http: HttpClient, private stompService: RxStompService) {
+  constructor(private http: HttpClient, private stompService: RxStompService, private flashMessageService: FlashMessagesService) {
+  }
+
+  flashOnError<T>(): OperatorFunction<T, T>{
+    return catchError(err => {
+      this.flashMessageService.show(JSON.stringify(err), { cssClass: 'alert-error', timeout: 10000 });
+      return throwError(err);
+    })
   }
 
   listJobs(): Observable<JobsByName> {
-    return this.http.get<JobsByName>(URL + "jobs");
+    return this.http.get<JobsByName>(URL + "jobs")
+      .pipe(this.flashOnError());
   }
 
   updateJob(job: ExternalBatchJob): Observable<ExternalBatchJob> {
-    return this.http.put<ExternalBatchJob>(URL + "jobs", job);
+    return this.http.put<ExternalBatchJob>(URL + "jobs", job)
+      .pipe(this.flashOnError());
   }
 
 
   listTestbeds(): Observable<Array<ExternalTestbed>> {
-    return this.http.get<Array<ExternalTestbed>>(URL + "testbeds");
+    return this.http.get<Array<ExternalTestbed>>(URL + "testbeds")
+      .pipe(this.flashOnError());
   }
 
   listSchedulings(): Observable<Array<ExternalScheduling>> {
-    return this.http.get<Array<ExternalScheduling>>(URL + "schedulings");
+    return this.http.get<Array<ExternalScheduling>>(URL + "schedulings")
+      .pipe(this.flashOnError());
   }
 
   createScheduling(scheduling: ExternalScheduling): Observable<ExternalScheduling> {
-    return this.http.post<ExternalScheduling>(URL + "schedulings", scheduling);
+    return this.http.post<ExternalScheduling>(URL + "schedulings", scheduling)
+      .pipe(this.flashOnError());
   }
 
   deleteScheduling(name: String): Observable<void> {
-    return this.http.delete<void>(URL + "schedulings/" + name);
+    return this.http.delete<void>(URL + "schedulings/" + name)
+      .pipe(this.flashOnError());
   }
 
   listenForJobs(): Observable<ExternalResourceModification<string>> {
     return this.stompService.watch(`/topic/jobs`)
       .pipe(map((message) => {
-        let modification: ExternalResourceModification<string> = JSON.parse(message.body);
-        return modification;
-      }));
+          let modification: ExternalResourceModification<string> = JSON.parse(message.body);
+          return modification;
+        }),
+        catchError(err => {
+          this.flashMessageService.show(err)
+          return throwError(err);
+        }));
   }
 
   getJob(name: string): Observable<ExternalBatchJob> {
@@ -123,9 +141,9 @@ export class ExternalSchedulerInterfaceService {
   listenForTestbeds(): Observable<ExternalResourceModification<string>> {
     return this.stompService.watch(`/topic/testbeds`)
       .pipe(map((message) => {
-      let modification: ExternalResourceModification<string> = JSON.parse(message.body);
-      return modification;
-    }));
+        let modification: ExternalResourceModification<string> = JSON.parse(message.body);
+        return modification;
+      }));
   }
 
   getTestbed(name: string): Observable<ExternalTestbed> {

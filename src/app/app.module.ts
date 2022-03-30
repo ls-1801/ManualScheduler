@@ -16,6 +16,7 @@ import { SchedulingSelectorComponent } from './scheduling-selector/scheduling-se
 import { JobComponent } from './jobs/job/job.component';
 import { SchedulingBuilderComponent } from './scheduling/scheduling-builder/scheduling-builder.component';
 import { QueueBasedBuilderComponent } from './scheduling/queue-based-builder/queue-based-builder.component';
+import {FlashMessagesModule} from "flash-messages-angular";
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { QueueBasedBuilderComponent } from './scheduling/queue-based-builder/que
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FlashMessagesModule.forRoot(),
   ],
   providers: [
     {
